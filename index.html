@@ -61,6 +61,20 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 .qualQuote cite{font-style:normal;font-size:11px;font-weight:700;color:#3d1505}
 .modalTrust{margin-top:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;line-height:1.5}
 .modalTrust b{color:var(--accent);letter-spacing:.05em}.qualGrid{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end}.qual h2{font-family:var(--display);font-size:clamp(42px,6vw,76px);line-height:.91;letter-spacing:-.06em;margin:12px 0}.qual p{max-width:520px;font-size:15px}.qualBox{background:#111;color:#fff;padding:26px}.qualBox b{font-family:var(--display);font-size:20px}.qualBox div{border-top:1px solid #3a3935;padding:12px 0;margin-top:10px;font-size:12px;color:#bbb8b0}.qualBox button{margin-top:12px;width:100%}
+.who{background:#e9e5dc;padding:85px 0}
+.whoGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.who h2{font-family:var(--display);font-size:clamp(38px,5vw,62px);line-height:.95;letter-spacing:-.055em;margin:12px 0 22px}
+.who p{color:#55534d;font-size:15px;max-width:520px;margin:0 0 16px}
+.who p strong{color:var(--ink)}
+.whoCard{background:var(--paper);border:1px solid var(--line);padding:16px;max-width:400px;justify-self:end}
+.whoCard img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover}
+.whoName{display:flex;justify-content:space-between;align-items:baseline;padding:16px 4px 12px}
+.whoName b{font-family:var(--display);font-size:19px;letter-spacing:-.03em}
+.whoName span{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.whoRows div{display:flex;justify-content:space-between;padding:11px 4px;border-top:1px solid var(--line);font-size:12px}
+.whoRows span{color:var(--muted)}
+.whoRows b{text-align:right}
+@media(max-width:850px){.whoGrid{grid-template-columns:1fr}.whoCard{justify-self:start;max-width:100%}}
 .clients{background:var(--paper);border-bottom:1px solid var(--line);padding:34px 0}
 .clientRow{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
 .clientRow .lab{font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--muted);text-transform:uppercase;white-space:nowrap}
@@ -137,7 +151,7 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 <nav class="nav">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between">
     <div class="logo">BUILD WITH <span>SRI</span></div>
-    <div class="navlinks"><a href="#problem">Problem</a><a href="#fit">Fit</a><a href="#deliver">What you buy</a><a href="#proof">Proof</a></div>
+    <div class="navlinks"><a href="#problem">Problem</a><a href="#fit">Fit</a><a href="#deliver">What you buy</a><a href="#who">Who we are</a><a href="#proof">Proof</a></div>
     <button class="navcta" data-open>Find the bottleneck →</button>
   </div>
 </nav>
@@ -145,7 +159,7 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 <header class="hero">
 <div class="wrap heroGrid">
   <div>
-    <div class="eyebrow">Enterprise AI systems · not AI automation</div>
+    <div class="eyebrow">An enterprise AI engineering studio · not AI automation</div>
     <h1>Your AI isn't the bottleneck.<br><em>Your business workflow is.</em></h1>
     <p class="heroLead">We find the expensive decision, exception or handoff your people are still carrying across <strong>ERP, CRM, legacy systems, databases and documents</strong> — then engineer the AI layer around the actual business outcome.</p>
     <div class="heroActions"><button class="btn primary" data-open>Show me where AI should actually go →</button><span class="micro">10 questions · ~2 minutes · no generic AI audit</span></div>
@@ -272,6 +286,27 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 </div>
 </section>
 
+<section class="who" id="who">
+<div class="wrap whoGrid">
+  <div>
+    <div class="eyebrow">Who we are</div>
+    <h2>A small studio that ships like a team twice its size.</h2>
+    <p>Build with Sri is a boutique AI engineering studio based in Bengaluru, working with <strong>million-dollar companies across Germany, Australia and the US</strong>. We design, build and run the AI layer inside real business workflows — accounting data, voice calls, market intelligence — and we stay until it survives production.</p>
+    <p><strong>No account managers, no handoffs.</strong> The engineer who scopes your workflow is the engineer who builds it, tests it and answers for it.</p>
+  </div>
+  <div class="whoCard">
+    <img src="assets/srinath.jpg" alt="Srinath K., founder of Build with Sri">
+    <div class="whoName"><b>Srinath K.</b><span>Founder &amp; Lead Engineer</span></div>
+    <div class="whoRows">
+      <div><span>Based</span><b>Bengaluru, India</b></div>
+      <div><span>Clients</span><b>Germany · Australia · US</b></div>
+      <div><span>Standing</span><b>Top Rated · 100% Job Success</b></div>
+      <div><span>Focus</span><b>Production AI systems</b></div>
+    </div>
+  </div>
+</div>
+</section>
+
 <section class="section dark" id="proof">
 <div class="wrap">
   <div class="sectionHead">
@@ -333,7 +368,7 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 </div>
 </section>
 
-<footer class="footer wrap"><span>© 2026 Build with Sri</span><span><a href="https://www.upwork.com/freelancers/srinath262003" target="_blank" rel="noopener" style="text-decoration:underline">Upwork: Top Rated · 100% Job Success · verified reviews →</a></span><span>AI systems engineering for expensive enterprise workflows.</span></footer>
+<footer class="footer wrap"><span>© 2026 Build with Sri</span><span><a href="https://www.upwork.com/freelancers/srinath262003" target="_blank" rel="noopener" style="text-decoration:underline">Upwork: Top Rated · 100% Job Success · verified reviews →</a></span><span>An AI engineering studio in Bengaluru, serving Germany, Australia &amp; the US.</span></footer>
 
 <div class="modal" id="modal">
 <div class="modalBox">
