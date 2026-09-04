@@ -55,8 +55,26 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 .proofGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.case{background:#23221f;border:1px solid #3b3934;padding:28px;min-height:330px}.case h3{font-family:var(--display);font-size:32px;line-height:1;letter-spacing:-.04em;max-width:600px;margin:45px 0 18px}.case p{color:#aaa79f;font-size:13px;max-width:570px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px}.metric{border:1px solid #3b3934;padding:13px}.metric b{display:block;font-size:22px}.metric span{font-size:10px;color:#99968f}.proofNote{border:1px solid #3b3934;padding:28px}.proofNote h3{font-family:var(--display);font-size:25px;line-height:1.05;margin:45px 0 15px}.proofNote p{font-size:13px;color:#aaa79f}.proofNote ul{padding:0;margin:22px 0 0;list-style:none}.proofNote li{padding:10px 0;border-top:1px solid #3b3934;font-size:12px}
 .process{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #3b3934;border-left:1px solid #3b3934}.step{padding:20px;border-right:1px solid #3b3934;border-bottom:1px solid #3b3934;min-height:200px}.step .n{color:var(--accent);font-size:10px;font-weight:700}.step h3{font-family:var(--display);font-size:18px;line-height:1.05;margin:48px 0 10px}.step p{color:#9d9a93;font-size:12px;margin:0}
 .qual{background:var(--accent);padding:85px 0}.qualGrid{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end}.qual h2{font-family:var(--display);font-size:clamp(42px,6vw,76px);line-height:.91;letter-spacing:-.06em;margin:12px 0}.qual p{max-width:520px;font-size:15px}.qualBox{background:#111;color:#fff;padding:26px}.qualBox b{font-family:var(--display);font-size:20px}.qualBox div{border-top:1px solid #3a3935;padding:12px 0;margin-top:10px;font-size:12px;color:#bbb8b0}.qualBox button{margin-top:12px;width:100%}
+.clients{background:var(--paper);border-bottom:1px solid var(--line);padding:24px 0}
+.clientRow{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.clientRow .lab{font-size:10px;letter-spacing:.16em;font-weight:700;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.clientLogos{display:flex;align-items:center;gap:42px;flex-wrap:wrap;flex:1;justify-content:space-evenly}
+.clientLogos img{height:26px;width:auto;filter:brightness(0);opacity:.72;transition:opacity .18s}
+.clientLogos img.tall{height:40px}
+.clientLogos img.mid{height:38px}
+.clientLogos img:hover{opacity:1}
+.clientLogos .kufu{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.03em;color:var(--ink);opacity:.6;transition:opacity .18s}
+.clientLogos .kufu:hover{opacity:1}
+.heroTrust{margin-top:22px;font-size:11px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.heroTrust b{color:var(--ink)}
+.miniCases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.mini{border:1px solid #3b3934;background:#23221f;padding:22px;display:flex;flex-direction:column}
+.mini .tag{font-size:10px;color:var(--accent);letter-spacing:.12em;font-weight:700;text-transform:uppercase}
+.mini h4{font-family:var(--display);font-size:19px;line-height:1.08;letter-spacing:-.02em;margin:16px 0 9px;color:#fff}
+.mini p{font-size:12px;color:#aaa79f;margin:0 0 14px;flex:1}
+.mini .stat{border-top:1px solid #3b3934;padding-top:12px;font-size:11px;color:#8ff0b9;font-weight:700;letter-spacing:.03em}
 .footer{padding:32px 0;font-size:12px;color:#77736b;display:flex;justify-content:space-between}.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modal.open{display:flex}.modalBox{background:var(--paper);width:min(620px,100%);padding:30px;max-height:92vh;overflow:auto}.modalTop{display:flex;justify-content:space-between;align-items:start}.close{border:1px solid var(--line);background:transparent;width:34px;height:34px}.modal h2{font-family:var(--display);font-size:34px;line-height:.98;letter-spacing:-.04em;margin:15px 0 7px}.modal .sub{font-size:12px;color:var(--muted);margin-bottom:24px}.q{display:none}.q.active{display:block}.q label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;display:block;margin-bottom:10px}.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.opt{border:1px solid var(--line);background:transparent;text-align:left;padding:13px;font-size:13px}.opt:hover,.opt.selected{border-color:var(--accent);background:#fff1ec}.field{width:100%;border:1px solid var(--line);background:white;padding:13px;margin-bottom:10px}.progress{height:4px;background:#ddd8cf;margin-bottom:24px}.progress i{display:block;height:100%;background:var(--accent);width:20%}.modalActions{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-@media(max-width:850px){.navlinks{display:none}.heroGrid,.sectionHead,.scoreGrid,.qualGrid,.proofGrid{grid-template-columns:1fr}.hero{padding-top:55px}.problemGrid{grid-template-columns:1fr 1fr}.selector{grid-template-columns:1fr}.roles{display:grid;grid-template-columns:repeat(2,1fr);border-right:0;border-bottom:1px solid #393733}.role{border-right:1px solid #393733}.rolePanel{min-height:0}.deliver{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.section{padding:70px 0}}
+@media(max-width:850px){.navlinks{display:none}.miniCases{grid-template-columns:1fr}.clientRow{justify-content:center}.heroGrid,.sectionHead,.scoreGrid,.qualGrid,.proofGrid{grid-template-columns:1fr}.hero{padding-top:55px}.problemGrid{grid-template-columns:1fr 1fr}.selector{grid-template-columns:1fr}.roles{display:grid;grid-template-columns:repeat(2,1fr);border-right:0;border-bottom:1px solid #393733}.role{border-right:1px solid #393733}.rolePanel{min-height:0}.deliver{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.section{padding:70px 0}}
 .processing{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:#fff;padding:14px;margin:18px 0 16px;font-size:12px;color:var(--muted)}
 .processing i{width:18px;height:18px;border:2px solid #ddd8cf;border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;display:block;flex:0 0 auto}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -121,6 +139,7 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
     <h1>Your AI isn't the bottleneck.<br><em>Your business workflow is.</em></h1>
     <p class="heroLead">We find the expensive decision, exception or handoff your people are still carrying across <strong>ERP, CRM, legacy systems, databases and documents</strong> — then engineer the AI layer around the actual business outcome.</p>
     <div class="heroActions"><button class="btn primary" data-open>Show me where AI should actually go →</button><span class="micro">10 questions · ~2 minutes · no generic AI audit</span></div>
+    <div class="heroTrust"><span><b>4</b> production AI systems shipped</span><span><b>240k+</b> records under AI query</span><span><b>253/253</b> automated emails delivered, zero failures</span></div>
   </div>
   <div class="heroCard">
     <div class="eyebrow">A workflow, not a chatbot</div>
@@ -136,6 +155,19 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 </header>
 
 <div class="strip"><span>STOP BUYING DEMOS.</span><span>FIND THE EXPENSIVE WORKFLOW.</span><span>ENGINEER THE DECISION.</span><span>STOP BUYING DEMOS.</span></div>
+
+<div class="clients">
+<div class="wrap clientRow">
+  <span class="lab">Systems shipped for</span>
+  <div class="clientLogos">
+    <img src="assets/elunic.webp" alt="elunic">
+    <img class="mid" src="assets/jensen.png" alt="Jensen Instrument Technologies">
+    <span class="kufu">KUFU Finance</span>
+    <img src="assets/exp-realty.png" alt="eXp Realty">
+    <img class="tall" src="assets/tree-group.png" alt="T.R.E.E. Group">
+  </div>
+</div>
+</div>
 
 <section class="section" id="problem">
 <div class="wrap">
@@ -231,12 +263,17 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
   </div>
   <div class="proofGrid">
     <article class="case">
-      <div class="eyebrow">Illustrative production pattern</div>
-      <h3>Enterprise quote intelligence: four systems → one governed decision surface.</h3>
-      <p>CRM opportunity data, ERP cost, contract constraints and inventory are assembled at the point of approval. The system checks business rules, shows evidence and routes exceptions to the authorized owner.</p>
-      <div class="metrics"><div class="metric"><b>4</b><span>system contexts</span></div><div class="metric"><b>11.8%</b><span>example margin detected</span></div><div class="metric"><b>15%</b><span>configured floor</span></div></div>
+      <div class="eyebrow">Shipped · Jensen Instrument Technologies, Australia</div>
+      <h3>Fourteen years of pricing history, answered in plain English.</h3>
+      <p>A surgical-instrument supplier quoted repairs from memory and scattered MYOB invoices. Now anyone authorised asks in ordinary language; the AI writes its own read-only SQL over the live accounting data and answers with the actual transactions attached. Margin visible at quote time. It provably cannot write to the database.</p>
+      <div class="metrics"><div class="metric"><b>241,658</b><span>rows under AI query</span></div><div class="metric"><b>66.9 ms</b><span>slowest AI-written query</span></div><div class="metric"><b>28–64×</b><span>product-search speed-up</span></div></div>
     </article>
     <aside class="proofNote"><div class="eyebrow">What gets demonstrated</div><h3>Show the failure surface, not just the happy path.</h3><p>A credible enterprise proof sequence should expose how the system behaves when reality breaks the demo.</p><ul><li>Wrong or missing data → flag + request evidence</li><li>User lacks access → deny + preserve auditability</li><li>Model/provider fails → bounded fallback</li><li>Business rule conflicts → deterministic check wins</li><li>Ambiguous case → human approval</li></ul></aside>
+  </div>
+  <div class="miniCases">
+    <article class="mini"><div class="tag">Shipped · KUFU Finance</div><h4>A daily market briefing with no human in the loop.</h4><p>Reads public financial sources nightly, matches every item to each subscriber's own holdings, and emails one ranked briefing at each market open — running unattended in production since May 2026.</p><div class="stat">150 briefings · 253/253 emails delivered · 0 failures</div></article>
+    <article class="mini"><div class="tag">Shipped · Consumer AI app (confidential)</div><h4>An AI backend built for the moment the model fails.</h4><p>The inference layer behind a companion app: dual-provider failover, a crisis-safety guarantee enforced in code rather than in the prompt, and a memory that stays true as facts change.</p><div class="stat">487 automated tests · 8 failure paths degrade instead of erroring</div></article>
+    <article class="mini"><div class="tag">Shipped · eXp Realty · T.R.E.E. Group</div><h4>Voice agents that pick up when the agent can't.</h4><p>AI voice agents for a US real-estate group — answering inbound calls, qualifying buyers and sellers, and routing serious leads to a human with the context already gathered.</p><div class="stat">Deployed with a veteran-owned eXp Realty brokerage team</div></article>
   </div>
 </div>
 </section>
@@ -274,7 +311,7 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 </div>
 </section>
 
-<footer class="footer wrap"><span>© 2026 Build with Sri</span><span>AI systems engineering for expensive enterprise workflows.</span></footer>
+<footer class="footer wrap"><span>© 2026 Build with Sri</span><span><a href="https://www.upwork.com/freelancers/srinath262003" target="_blank" rel="noopener" style="text-decoration:underline">Verified client reviews on Upwork →</a></span><span>AI systems engineering for expensive enterprise workflows.</span></footer>
 
 <div class="modal" id="modal">
 <div class="modalBox">
