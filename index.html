@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build with Sri — Find the Enterprise AI Bottleneck</title>
+<meta name="description" content="Enterprise AI engineering focused on expensive workflows, not generic AI automation.">
+<link rel="canonical" href="https://buildwithsri.dev/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#f3f0e9">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://buildwithsri.dev/">
+<meta property="og:title" content="Your AI isn't the bottleneck. Your business workflow is.">
+<meta property="og:description" content="An AI engineering studio building production AI systems for million-dollar companies across Germany, Australia and the US.">
+<meta property="og:image" content="https://buildwithsri.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your AI isn't the bottleneck. Your business workflow is.">
+<meta name="twitter:description" content="An AI engineering studio building production AI systems for million-dollar companies across Germany, Australia and the US.">
+<meta name="twitter:image" content="https://buildwithsri.dev/assets/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f0e9;--paper:#fbfaf7;--ink:#141414;--muted:#696760;--line:#d9d5cc;
+  --accent:#ff4d1c;--dark:#171716;--dark2:#242320;--white:#fff;
+  --serif:Georgia,"Times New Roman",serif;--sans:"DM Sans",sans-serif;--display:"Space Grotesk",sans-serif;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.45}
+a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+.nav{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:rgba(243,240,233,.94);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}
+.logo{font-family:var(--display);font-weight:700;letter-spacing:-.04em}.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:26px;font-size:13px;font-weight:600;color:#4e4c47}.navlinks a:hover{color:var(--accent)}
+.navcta,.btn{border:0;background:var(--ink);color:#fff;padding:12px 17px;border-radius:4px;font-weight:700;font-size:13px}
+.navcta:hover,.btn:hover{background:var(--accent)}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+.hero{padding:74px 0 55px;border-bottom:1px solid var(--line)}
+.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+h1{font-family:var(--display);font-size:clamp(48px,5.5vw,74px);line-height:.94;letter-spacing:-.065em;margin:17px 0 24px;max-width:800px}
+h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
+.heroLead{font-size:19px;color:#4d4b46;max-width:650px}.heroLead strong{color:var(--ink)}
+.heroActions{display:flex;align-items:center;gap:14px;margin-top:30px}.heroActions .btn{white-space:nowrap;flex:0 0 auto}.btn.primary{background:var(--accent);padding:15px 20px}.btn.primary:hover{background:var(--ink)}
+.micro{font-size:14px;color:#55534d}
+.heroCard{background:var(--dark);color:#fff;padding:25px;border-radius:2px;min-height:365px;position:relative;overflow:hidden}
+.heroCard:before{content:"";position:absolute;width:260px;height:260px;border:1px solid #4a4944;border-radius:50%;right:-90px;top:-90px}
+.heroCard h2{font-family:var(--display);font-size:30px;letter-spacing:-.04em;line-height:1.05;margin:12px 0 28px;max-width:450px}
+.signal{border-top:1px solid #44423d;padding:14px 0;display:grid;grid-template-columns:90px 1fr auto;gap:10px;font-size:12px;align-items:center}
+.signal b{font-size:13px}.signal .status{color:#8ff0b9;font-weight:700}
+.heroCard .foot{margin-top:22px;padding-top:14px;border-top:1px solid #44423d;color:#a7a49c;font-size:11px}
+.strip{background:var(--accent);color:#111;padding:13px 0;overflow:hidden;white-space:nowrap;font-family:var(--display);font-weight:700;font-size:13px}
+.strip span{margin-right:38px}
+.section{padding:95px 0;border-bottom:1px solid var(--line)}
+.section.dark{background:var(--dark);color:#fff;border-bottom:0}
+.sectionHead{display:grid;grid-template-columns:1fr .75fr;gap:70px;margin-bottom:50px}.sectionHead h2{font-family:var(--display);font-size:clamp(36px,5vw,58px);line-height:.98;letter-spacing:-.055em;margin:10px 0 0}.sectionHead p{color:#6a6862;max-width:510px;margin:28px 0 0}.dark .sectionHead p{color:#aaa79f}
+.problemGrid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.problem{padding:25px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:225px;background:var(--paper)}
+.problem .num{font-family:var(--display);font-size:11px;color:var(--accent);font-weight:700}.problem h3{font-family:var(--display);font-size:22px;line-height:1.05;letter-spacing:-.03em;margin:42px 0 10px}.problem p{font-size:13px;color:var(--muted);margin:0}.problem .cost{margin-top:20px;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.selector{display:grid;grid-template-columns:280px 1fr;border:1px solid #393733}
+.roles{border-right:1px solid #393733}.role{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #393733;background:transparent;color:#aaa79f;padding:18px 20px}.role:last-child{border-bottom:0}.role strong{display:block;color:inherit;font-size:14px}.role small{font-size:11px}.role.active{background:var(--accent);color:#111}
+.rolePanel{padding:36px;min-height:470px}.rolePanel .roleTag{font-size:11px;color:#aaa79f;letter-spacing:.12em;text-transform:uppercase}.rolePanel h3{font-family:var(--display);font-size:clamp(31px,4vw,49px);line-height:.99;letter-spacing:-.05em;max-width:760px;margin:13px 0 35px}
+.roleBody{display:grid;grid-template-columns:1fr 1fr;gap:40px}.quote{font-family:var(--serif);font-size:23px;line-height:1.2}.roleList{display:grid;gap:11px}.roleList div{border-top:1px solid #44413b;padding-top:11px}.roleList b{display:block;font-size:13px}.roleList span{font-size:12px;color:#a8a59e}
+.demo{margin-top:38px;border:1px solid #3f3d38;padding:18px;display:grid;grid-template-columns:1fr 55px 1fr;gap:18px;align-items:center}
+.demo small{color:#918e86;font-size:10px;text-transform:uppercase;letter-spacing:.12em}.demo strong{display:block;margin-top:7px;font-size:14px}.demo .arrow{font-size:24px;color:var(--accent);text-align:center}.demo .answer{color:#9bf1c0}
+.score{background:#e9e5dc;padding:75px 0}.scoreGrid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}.score h2{font-family:var(--display);font-size:clamp(38px,5vw,62px);line-height:.95;letter-spacing:-.055em;margin:12px 0}.score p{color:var(--muted);max-width:440px}.scoreBox{background:var(--paper);border:1px solid var(--line);padding:28px}.meter{height:10px;background:#d6d2ca;margin:12px 0 25px}.meter i{display:block;height:100%;width:78%;background:var(--accent)}.scoreRows{display:grid;gap:0}.scoreRow{display:grid;grid-template-columns:1fr 110px;padding:14px 0;border-top:1px solid var(--line);font-size:13px}.scoreRow b{text-align:right}.scoreRow b.red{color:var(--accent)}
+.deliver{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.deliver article{padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:210px;background:var(--paper)}.deliver h3{font-family:var(--display);font-size:19px;line-height:1.05;margin:48px 0 10px}.deliver p{font-size:12px;color:var(--muted);margin:0}.deliver .tag{font-size:10px;color:var(--accent);letter-spacing:.12em;font-weight:700}
+.proofGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.case{background:#23221f;border:1px solid #3b3934;padding:28px;min-height:330px}.case h3{font-family:var(--display);font-size:32px;line-height:1;letter-spacing:-.04em;max-width:600px;margin:20px 0 22px}.case p{color:#aaa79f;font-size:13px;max-width:570px}
+.caseRow{display:grid;grid-template-columns:110px 1fr;gap:16px;border-top:1px solid #3b3934;padding:13px 0}
+.caseRow span{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:700;padding-top:2px}
+.caseRow p{margin:0;font-size:13px;color:#aaa79f}
+.moreLabel{margin-top:36px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#8a877f;display:flex;align-items:center;gap:16px}
+.moreLabel:after{content:"";flex:1;height:1px;background:#3b3934}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px}.metric{border:1px solid #3b3934;padding:13px}.metric b{display:block;font-size:22px}.metric span{font-size:10px;color:#99968f}.proofNote{border:1px solid #3b3934;padding:28px}.proofNote h3{font-family:var(--display);font-size:25px;line-height:1.05;margin:45px 0 15px}.proofNote p{font-size:13px;color:#aaa79f}.proofNote ul{padding:0;margin:22px 0 0;list-style:none}.proofNote li{padding:10px 0;border-top:1px solid #3b3934;font-size:12px}
+.process{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #3b3934;border-left:1px solid #3b3934}.step{padding:20px;border-right:1px solid #3b3934;border-bottom:1px solid #3b3934;min-height:200px}.step .n{color:var(--accent);font-size:10px;font-weight:700}.step h3{font-family:var(--display);font-size:18px;line-height:1.05;margin:48px 0 10px}.step p{color:#9d9a93;font-size:12px;margin:0}
+.qual{background:var(--accent);padding:85px 0}
+.qualQuote{margin:28px 0 0;padding:18px 20px;border-left:3px solid #111;max-width:520px}
+.qualQuote .stars{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#111}
+.qualQuote p{font-family:var(--serif);font-style:italic;font-size:15px;margin:10px 0 8px;max-width:none}
+.qualQuote cite{font-style:normal;font-size:11px;font-weight:700;color:#3d1505}
+.modalTrust{margin-top:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;line-height:1.5}
+.modalTrust b{color:var(--accent);letter-spacing:.05em}.qualGrid{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end}.qual h2{font-family:var(--display);font-size:clamp(42px,6vw,76px);line-height:.91;letter-spacing:-.06em;margin:12px 0}.qual p{max-width:520px;font-size:15px}.qualBox{background:#111;color:#fff;padding:26px}.qualBox b{font-family:var(--display);font-size:20px}.qualBox div{border-top:1px solid #3a3935;padding:12px 0;margin-top:10px;font-size:12px;color:#bbb8b0}.qualBox button{margin-top:12px;width:100%}
+.who{background:#e9e5dc;padding:85px 0}
+.whoGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.who h2{font-family:var(--display);font-size:clamp(38px,5vw,62px);line-height:.95;letter-spacing:-.055em;margin:12px 0 22px}
+.who p{color:#55534d;font-size:15px;max-width:520px;margin:0 0 16px}
+.who p strong{color:var(--ink)}
+.whoQuote{margin:26px 0 0;padding:16px 18px;border-left:3px solid var(--accent);background:var(--paper);max-width:520px}
+.whoQuote .stars{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.whoQuote p{font-family:var(--serif);font-style:italic;font-size:15px;margin:9px 0 7px;max-width:none;color:var(--ink)}
+.whoQuote cite{font-style:normal;font-size:11px;font-weight:700;color:var(--muted)}
+.whoCard{background:var(--paper);border:1px solid var(--line);padding:16px;max-width:400px;justify-self:end}
+.whoCard img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover}
+.whoName{display:flex;justify-content:space-between;align-items:baseline;padding:16px 4px 12px}
+.whoName b{font-family:var(--display);font-size:19px;letter-spacing:-.03em}
+.whoName span{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.whoRows div{display:flex;justify-content:space-between;padding:11px 4px;border-top:1px solid var(--line);font-size:12px}
+.whoRows span{color:var(--muted)}
+.whoRows b{text-align:right}
+@media(max-width:850px){.whoGrid{grid-template-columns:1fr}.whoCard{justify-self:start;max-width:100%}}
+.clients{background:var(--paper);border-bottom:1px solid var(--line);padding:34px 0}
+.clientRow{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.clientRow .lab{font-family:var(--display);font-size:16px;letter-spacing:.06em;font-weight:700;color:#000;text-transform:uppercase;white-space:nowrap;border-left:4px solid var(--accent);padding-left:14px;line-height:1.4}
+.clientLogos{display:flex;align-items:center;gap:42px;flex-wrap:wrap;flex:1;justify-content:space-evenly}
+.clientLogos img{height:34px;width:auto;opacity:.95;transition:opacity .18s}
+.clientLogos img.tall{height:64px}
+.clientLogos img:hover{opacity:1}
+.clientLogos .jChip{background:var(--dark);border-radius:5px;padding:12px 18px;display:inline-flex;align-items:center}
+.clientLogos .jChip img{height:38px}
+.clientLogos .kufu{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-.03em;color:var(--ink);opacity:.9;transition:opacity .18s}
+.clientLogos .kufu:hover{opacity:1}
+.clientLogos img[alt="eXp Realty"]{height:52px}
+.heroTrust{margin-top:55px;padding-top:26px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+.heroTrust em{display:block;font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:9px}
+.heroTrust b{display:block;font-family:var(--display);font-size:26px;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.heroTrust i{display:block;font-style:normal;font-size:14px;color:#55534d;margin-top:8px;line-height:1.5;padding-right:12px}
+@media(max-width:850px){.heroTrust{grid-template-columns:1fr 1fr;gap:22px}}
+.miniCases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+.mini{border:1px solid #3b3934;background:#23221f;padding:22px;display:flex;flex-direction:column}
+.mini .tag{font-size:10px;color:var(--accent);letter-spacing:.12em;font-weight:700;text-transform:uppercase}
+.mini h4{font-family:var(--display);font-size:19px;line-height:1.08;letter-spacing:-.02em;margin:16px 0 9px;color:#fff}
+.mini p{font-size:12px;color:#aaa79f;margin:0 0 14px;flex:1}
+.mini .stat{border-top:1px solid #3b3934;padding-top:12px;font-size:11px;color:#8ff0b9;font-weight:700;letter-spacing:.03em}
+.footer{padding:32px 0;font-size:12px;color:#77736b;display:flex;justify-content:space-between}.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modal.open{display:flex}.modalBox{background:var(--paper);width:min(620px,100%);padding:30px;max-height:92vh;overflow:auto}.modalTop{display:flex;justify-content:space-between;align-items:start}.close{border:1px solid var(--line);background:transparent;width:34px;height:34px}.modal h2{font-family:var(--display);font-size:34px;line-height:.98;letter-spacing:-.04em;margin:15px 0 7px}.modal .sub{font-size:12px;color:var(--muted);margin-bottom:24px}.q{display:none}.q.active{display:block}.q label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;display:block;margin-bottom:10px}.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.opt{border:1px solid var(--line);background:transparent;text-align:left;padding:13px;font-size:13px}.opt:hover,.opt.selected{border-color:var(--accent);background:#fff1ec}.field{width:100%;border:1px solid var(--line);background:white;padding:13px;margin-bottom:10px}.progress{height:4px;background:#ddd8cf;margin-bottom:24px}.progress i{display:block;height:100%;background:var(--accent);width:20%}.modalActions{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+@media(max-width:850px){.navlinks{display:none}.miniCases{grid-template-columns:1fr}.clientRow{justify-content:center}.heroGrid,.sectionHead,.scoreGrid,.qualGrid,.proofGrid{grid-template-columns:1fr}.hero{padding-top:55px}.problemGrid{grid-template-columns:1fr 1fr}.selector{grid-template-columns:1fr}.roles{display:grid;grid-template-columns:repeat(2,1fr);border-right:0;border-bottom:1px solid #393733}.role{border-right:1px solid #393733}.rolePanel{min-height:0}.deliver{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.section{padding:70px 0}}
+.processing{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:#fff;padding:14px;margin:18px 0 16px;font-size:12px;color:var(--muted)}
+.processing i{width:18px;height:18px;border:2px solid #ddd8cf;border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;display:block;flex:0 0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.otpWrap{padding:8px 0 4px}.otpIcon{display:flex;gap:5px;margin:8px 0 14px}.otpIcon span{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.2s infinite}.otpIcon span:nth-child(2){animation-delay:.15s}.otpIcon span:nth-child(3){animation-delay:.3s}
+@keyframes pulse{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+.successState{text-align:center;padding:20px 0}.successState .check{font-size:34px;margin-bottom:10px}
+
+/* Interactive assessment polish */
+.assessHead{position:relative}
+.assessProgress{height:4px;background:#ebe7df;border-radius:99px;overflow:hidden;margin-top:18px}
+.assessProgress span{display:block;height:100%;width:0;background:var(--accent);transition:width .45s cubic-bezier(.22,1,.36,1)}
+.q.active{animation:qIn .42s cubic-bezier(.22,1,.36,1)}
+@keyframes qIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
+.q label{display:block;margin-bottom:13px}
+.q .hint{font-size:12px;color:var(--muted);margin:-6px 0 14px;line-height:1.5}
+.opts{display:grid;gap:9px}
+.opt{position:relative;text-align:left;transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}
+.opt:after{content:"→";position:absolute;right:16px;opacity:0;transform:translateX(-5px);transition:.18s}
+.opt:hover{transform:translateY(-1px)}
+.opt:hover:after,.opt.selected:after{opacity:1;transform:none}
+.opt.selected{border-color:var(--accent)!important;background:#fff8f1!important;box-shadow:0 0 0 2px rgba(232,93,35,.08)}
+.field{transition:border-color .18s ease,box-shadow .18s ease}
+.field:focus{border-color:var(--accent)!important;box-shadow:0 0 0 3px rgba(232,93,35,.09);outline:0}
+.modalActions{transition:opacity .2s ease}
+#next{min-width:132px}
+#next:disabled{opacity:.55;cursor:wait}
+.processingCard{border:1px solid var(--line);background:#faf9f6;padding:22px;margin-top:16px;position:relative;overflow:hidden}
+.processingCard:before{content:"";position:absolute;left:-35%;top:0;width:35%;height:2px;background:var(--accent);animation:scan 1.5s ease-in-out infinite}
+@keyframes scan{0%{left:-35%}100%{left:100%}}
+.processingDots{display:flex;gap:5px;margin-bottom:12px}
+.processingDots span{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:dotPulse 1.05s infinite ease-in-out}
+.processingDots span:nth-child(2){animation-delay:.14s}.processingDots span:nth-child(3){animation-delay:.28s}
+@keyframes dotPulse{0%,70%,100%{opacity:.25;transform:scale(.75)}35%{opacity:1;transform:scale(1)}}
+.processingTitle{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:4px}
+.processingSub{font-size:12px;color:var(--muted);line-height:1.5}
+.stageList{display:grid;gap:8px;margin-top:16px}
+.stage{display:flex;align-items:center;gap:9px;font-size:11px;color:#8b877f;transition:.3s}
+.stage .dot{width:18px;height:18px;border:1px solid #d8d2c8;border-radius:50%;display:grid;place-items:center;font-size:9px;background:#fff}
+.stage.active{color:var(--ink)}.stage.active .dot{border-color:var(--accent);color:var(--accent)}
+.stage.done .dot{background:var(--accent);color:white;border-color:var(--accent)}
+.otpCodeField{letter-spacing:.35em;text-align:center;font-size:22px;font-weight:700}
+.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.contactGrid .full{grid-column:1/-1}
+@media(max-width:560px){.contactGrid{grid-template-columns:1fr}.contactGrid .full{grid-column:auto}}
+
+@media(max-width:560px){.wrap{width:calc(100% - 24px)}h1{font-size:49px}.heroActions{align-items:stretch;flex-direction:column}.problemGrid,.deliver,.process{grid-template-columns:1fr}.roleBody,.demo{grid-template-columns:1fr}.demo .arrow{transform:rotate(90deg)}.metrics{grid-template-columns:1fr}.sectionHead{gap:20px}.heroCard{min-height:330px}.opts{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between">
+    <div class="logo">BUILD WITH <span>SRI</span></div>
+    <div class="navlinks"><a href="#problem">Problem</a><a href="#fit">Fit</a><a href="#deliver">What you buy</a><a href="#who">Who we are</a><a href="#proof">Proof</a></div>
+    <button class="navcta" data-open>Find my bottleneck →</button>
+  </div>
+</nav>
+
+<header class="hero">
+<div class="wrap heroGrid">
+  <div>
+    <div class="eyebrow">An enterprise AI engineering studio · not AI automation</div>
+    <h1>Your AI isn't the bottleneck.<br><em>Your business workflow is.</em></h1>
+    <p class="heroLead">Every day your best people waste hours pulling data from ERP, CRM, spreadsheets and documents just to make one decision. <strong>We build AI that does that work for them</strong>, so decisions happen in minutes, not days.</p>
+    <div class="heroActions"><button class="btn primary" data-open>Find my bottleneck →</button><span class="micro">10 questions · ~2 minutes · no generic AI audit</span></div>
+  </div>
+  <div class="heroCard">
+    <div class="eyebrow">A workflow, not a chatbot</div>
+    <h2>“Can we approve this enterprise quote?”</h2>
+    <div class="signal"><span>CRM</span><b>Account + opportunity</b><span class="status">FOUND</span></div>
+    <div class="signal"><span>ERP</span><b>Current supply cost</b><span class="status">FOUND</span></div>
+    <div class="signal"><span>CONTRACT</span><b>Commercial terms</b><span class="status">FOUND</span></div>
+    <div class="signal"><span>POLICY</span><b>Margin floor = 15%</b><span class="status">CHECKED</span></div>
+    <div class="signal"><span>DECISION</span><b>11.8% margin → route approval</b><span class="status">FLAGGED</span></div>
+    <div class="foot">AI does the context work. The authorized human still owns the decision.</div>
+  </div>
+</div>
+<div class="wrap">
+  <div class="heroTrust">
+    <div><em>Global reach</em><b>3 countries</b><i>Million-dollar companies in Germany, Australia &amp; the US run systems we built.</i></div>
+    <div><em>Enterprise scale</em><b>240k+</b><i>rows of a client's live accounting data answered by our AI — every figure backed by real records.</i></div>
+    <div><em>Reliability</em><b>253/253</b><i>automated client emails delivered since May 2026. Not one failure.</i></div>
+    <div><em>Independently verified</em><b>Top Rated</b><i>on Upwork with 100% Job Success — checkable, not self-claimed.</i></div>
+  </div>
+</div>
+</header>
+
+<div class="strip"><span>STOP BUYING DEMOS.</span><span>FIND THE EXPENSIVE WORKFLOW.</span><span>ENGINEER THE DECISION.</span><span>STOP BUYING DEMOS.</span><span>FIND THE EXPENSIVE WORKFLOW.</span><span>ENGINEER THE DECISION.</span><span>STOP BUYING DEMOS.</span><span>FIND THE EXPENSIVE WORKFLOW.</span><span>ENGINEER THE DECISION.</span><span>STOP BUYING DEMOS.</span><span>FIND THE EXPENSIVE WORKFLOW.</span><span>ENGINEER THE DECISION.</span><span>STOP BUYING DEMOS.</span><span>FIND THE EXPENSIVE WORKFLOW.</span><span>ENGINEER THE DECISION.</span></div>
+
+<div class="clients">
+<div class="wrap clientRow">
+  <span class="lab">Companies we've<br>worked with</span>
+  <div class="clientLogos">
+    <img src="assets/elunic.webp" alt="elunic">
+    <span class="jChip"><img src="assets/jensen.png" alt="Jensen Instrument Technologies"></span>
+    <span class="kufu">KUFU Finance</span>
+    <img src="assets/exp-realty.png" alt="eXp Realty">
+    <img class="tall" src="assets/tree-group.png" alt="T.R.E.E. Group">
+  </div>
+</div>
+</div>
+
+<section class="section" id="problem">
+<div class="wrap">
+  <div class="sectionHead">
+    <div><div class="eyebrow">The cost of the current state</div><h2>Most enterprise AI projects start one layer too high.</h2></div>
+    <p>You start with a model, a copilot or an automation idea. The business actually experiences the problem downstream: slow approvals, exception queues, margin leakage, duplicated analysis, unsafe access or decisions that require five systems and three people.</p>
+  </div>
+  <div class="problemGrid">
+    <article class="problem"><div class="num">01 · CFO / CEO</div><h3>“We know the numbers. Why does someone still need to build the answer?”</h3><p>Finance, commercial and operating data sit in different systems. Analysts reconcile it before leadership can act.</p><div class="cost">Cost → decision latency + analyst capacity</div></article>
+    <article class="problem"><div class="num">02 · COO</div><h3>“The happy path is automated. My best people own the exceptions.”</h3><p>Clean transactions flow. Ambiguous cases return to expensive experts with context missing.</p><div class="cost">Cost → exception queue + throughput</div></article>
+    <article class="problem"><div class="num">03 · CRO / SALES</div><h3>“Why is the customer waiting while we check four systems?”</h3><p>Pricing, inventory, contract terms, history and margin are scattered across operational systems.</p><div class="cost">Cost → quote speed + lost confidence</div></article>
+    <article class="problem"><div class="num">04 · CTO / CIO</div><h3>“The PoC works. Production is where it becomes a system.”</h3><p>Identity, permissions, evaluation, observability, fallbacks and failure behavior become unavoidable.</p><div class="cost">Cost → delivery risk + technical debt</div></article>
+    <article class="problem"><div class="num">05 · IT</div><h3>“Our systems exchange data. They still don't share context.”</h3><p>ERP owns one truth, CRM another, legacy apps another and documents the exception.</p><div class="cost">Cost → integration drag + manual bridging</div></article>
+    <article class="problem"><div class="num">06 · PRODUCT / AI</div><h3>“We shipped the AI. Now users need to trust it.”</h3><p>Quality drift, bad retrieval, provider failure and unsafe actions need engineered controls.</p><div class="cost">Cost → adoption + reliability</div></article>
+  </div>
+</div>
+</section>
+
+<section class="section dark" id="fit">
+<div class="wrap">
+  <div class="sectionHead">
+    <div><div class="eyebrow">Who this is actually for</div><h2>Don't pick your job title.<br>Pick your pressure.</h2></div>
+    <p>One page should not force six executives through the same sales story. This section is organized around the economic problem you already own.</p>
+  </div>
+  <div class="selector">
+    <div class="roles">
+      <button class="role active" data-role="ceo"><strong>Margin / decision speed</strong><small>CEO · CFO · business leader</small></button>
+      <button class="role" data-role="ops"><strong>Exception / throughput</strong><small>COO · operations leader</small></button>
+      <button class="role" data-role="commercial"><strong>Quote / revenue speed</strong><small>CRO · sales · commercial</small></button>
+      <button class="role" data-role="production"><strong>Production / risk</strong><small>CTO · CIO · engineering</small></button>
+      <button class="role" data-role="systems"><strong>Legacy / integration</strong><small>IT · business systems</small></button>
+      <button class="role" data-role="trust"><strong>AI quality / trust</strong><small>Product · AI lead</small></button>
+    </div>
+    <div class="rolePanel">
+      <div class="roleTag" id="roleTag">MARGIN / DECISION SPEED</div>
+      <h3 id="roleTitle">Turn fragmented operating data into a decision before the meeting happens.</h3>
+      <div class="roleBody">
+        <div class="quote" id="roleQuote">“Where are people still assembling context that the business already has?”</div>
+        <div class="roleList" id="roleList">
+          <div><b>Business pressure</b><span>Slow approvals, hidden margin leakage, expensive analyst time.</span></div>
+          <div><b>Systems involved</b><span>CRM + ERP + contracts + inventory + documents.</span></div>
+          <div><b>AI's job</b><span>Assemble evidence, calculate, explain and route — not make uncontrolled decisions.</span></div>
+        </div>
+      </div>
+      <div class="demo">
+        <div><small>BEFORE</small><strong id="before">CRM → spreadsheet → ERP → analyst → meeting</strong></div>
+        <div class="arrow">→</div>
+        <div><small>AFTER</small><strong class="answer" id="after">Context → evidence → decision → human approval</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="score" id="score">
+<div class="wrap scoreGrid">
+  <div><div class="eyebrow">A better qualification question</div><h2>Is your workflow expensive enough to engineer?</h2><p>We don't want every company. The strongest opportunities have measurable workflow volume, multiple systems, meaningful human intervention and an executive who already feels the cost.</p></div>
+  <div class="scoreBox">
+    <b>Example opportunity profile</b>
+    <div class="meter"><i></i></div>
+    <div class="scoreRows">
+      <div class="scoreRow"><span>Workflow volume</span><b>High</b></div>
+      <div class="scoreRow"><span>Systems involved</span><b>4+</b></div>
+      <div class="scoreRow"><span>Human intervention</span><b class="red">Expensive</b></div>
+      <div class="scoreRow"><span>Business impact</span><b>Revenue / margin</b></div>
+      <div class="scoreRow"><span>Urgency</span><b>Current initiative</b></div>
+      <div class="scoreRow"><span>Typical fit</span><b>Enterprise / complex mid-market</b></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="deliver">
+<div class="wrap">
+  <div class="sectionHead">
+    <div><div class="eyebrow">What you actually buy</div><h2>Not “AI consulting.” A business workflow engineered into production.</h2></div>
+    <p>The offer becomes concrete: identify the economic bottleneck, map the systems and controls, build the AI layer that pays for itself, prove it against real cases and leave your team with an operating system they can trust.</p>
+  </div>
+  <div class="deliver">
+    <article><div class="tag">01 · DIAGNOSE</div><h3>Opportunity map</h3><p>One priority workflow, quantified around time, volume, error, margin or revenue impact.</p></article>
+    <article><div class="tag">02 · ARCHITECT</div><h3>System + control design</h3><p>Data boundaries, identity, retrieval, tool access, deterministic checks and human approval.</p></article>
+    <article><div class="tag">03 · BUILD</div><h3>Production AI layer</h3><p>Integrations, context, evaluation, fallbacks, observability and the user-facing workflow.</p></article>
+    <article><div class="tag">04 · PROVE</div><h3>Outcome evidence</h3><p>Baseline vs improved workflow performance, failure cases, operating metrics and next-step economics.</p></article>
+  </div>
+</div>
+</section>
+
+<section class="who" id="who">
+<div class="wrap whoGrid">
+  <div>
+    <div class="eyebrow">Who we are</div>
+    <h2>We build the AI layer your business actually runs on.</h2>
+    <p>Build with Sri is an AI engineering studio based in Bengaluru, working with <strong>million-dollar companies across Germany, Australia and the US</strong>. We design, build and run the AI layer inside real business workflows — accounting data, voice calls, market intelligence — and we stay until it survives production.</p>
+    <p><strong>No account managers, no handoffs.</strong> The engineer who scopes your workflow is the engineer who builds it, tests it and answers for it.</p>
+    <blockquote class="whoQuote">
+      <div class="stars">★★★★★ 5.0 · Verified Upwork review</div>
+      <p>“Communication was clear and easy throughout, tasks were handled with care, and everything was delivered in a professional and reliable way.”</p>
+      <cite>— elunic, Germany · AI automation engagement</cite>
+    </blockquote>
+  </div>
+  <div class="whoCard">
+    <img src="assets/srinath.jpg" alt="Srinath K., founder of Build with Sri">
+    <div class="whoName"><b>Srinath K.</b><span>Founder &amp; Lead Engineer</span></div>
+    <div class="whoRows">
+      <div><span>Based</span><b>Bengaluru, India</b></div>
+      <div><span>Clients</span><b>Germany · Australia · US</b></div>
+      <div><span>Standing</span><b>Top Rated · 100% Job Success</b></div>
+      <div><span>Focus</span><b>Production AI systems</b></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section dark" id="proof">
+<div class="wrap">
+  <div class="sectionHead">
+    <div><div class="eyebrow">Proof without theatre</div><h2>Enterprise buyers don't need another impressive demo.</h2></div>
+    <p>They need evidence that the system survives messy data, real permissions, real exceptions and real failure modes. Replace vague “AI transformation” claims with workflow evidence.</p>
+  </div>
+  <div class="proofGrid">
+    <article class="case">
+      <div class="eyebrow">Flagship case study · Jensen Instrument Technologies, Australia</div>
+      <h3>Fourteen years of pricing history, answered in plain English.</h3>
+      <div class="caseRow"><span>The problem</span><p>Every repair quote depended on a few people's memory of fourteen years of scattered MYOB invoices. Margin was rarely checked at all.</p></div>
+      <div class="caseRow"><span>What we built</span><p>An assistant any authorised staff member can ask in plain English. The AI writes its own SQL over the live accounting data and attaches the actual transactions to every answer.</p></div>
+      <div class="caseRow"><span>Why it's safe</span><p>Read-only by construction — the AI provably cannot write to the database, and every figure it states comes from a real record.</p></div>
+      <div class="metrics"><div class="metric"><b>241,658</b><span>rows under AI query</span></div><div class="metric"><b>66.9 ms</b><span>slowest AI-written query</span></div><div class="metric"><b>28–64×</b><span>product-search speed-up</span></div></div>
+    </article>
+    <aside class="proofNote"><div class="eyebrow">How we prove a system works</div><h3>Show the failure surface, not just the happy path.</h3><p>A credible enterprise proof sequence should expose how the system behaves when reality breaks the demo.</p><ul><li>Wrong or missing data → flag + request evidence</li><li>User lacks access → deny + preserve auditability</li><li>Model/provider fails → bounded fallback</li><li>Business rule conflicts → deterministic check wins</li><li>Ambiguous case → human approval</li></ul></aside>
+  </div>
+  <div class="moreLabel"><span>More systems running in production</span></div>
+  <div class="miniCases">
+    <article class="mini"><div class="tag">Shipped · KUFU Finance</div><h4>A daily market briefing with no human in the loop.</h4><p>Reads public financial sources nightly, matches every item to each subscriber's own holdings, and emails one ranked briefing at each market open — running unattended in production since May 2026.</p><div class="stat">150 briefings · 253/253 emails delivered · 0 failures</div></article>
+    <article class="mini"><div class="tag">Shipped · Consumer AI app (confidential)</div><h4>An AI backend built for the moment the model fails.</h4><p>The inference layer behind a companion app: dual-provider failover, a crisis-safety guarantee enforced in code rather than in the prompt, and a memory that stays true as facts change.</p><div class="stat">487 automated tests · 8 failure paths degrade instead of erroring</div></article>
+    <article class="mini"><div class="tag">Shipped · eXp Realty · T.R.E.E. Group</div><h4>Voice agents that pick up when the agent can't.</h4><p>AI voice agents for a US real-estate group — answering inbound calls, qualifying buyers and sellers, and routing serious leads to a human with the context already gathered.</p><div class="stat">★★★★★ 5.0 · “A true professional. 10/10” — verified Upwork review</div></article>
+  </div>
+</div>
+</section>
+
+<section class="section dark" style="padding-top:0">
+<div class="wrap">
+  <div class="sectionHead">
+    <div><div class="eyebrow">How the engagement works</div><h2>Start with the economics. Engineer backward.</h2></div>
+    <p>No six-week strategy theatre before touching the workflow. The first milestone is clarity: where the money/time/risk is, what systems are involved and whether AI is actually justified.</p>
+  </div>
+  <div class="process">
+    <article class="step"><div class="n">01</div><h3>Pick the workflow</h3><p>Decision, exception, approval or customer response.</p></article>
+    <article class="step"><div class="n">02</div><h3>Quantify the drag</h3><p>Volume, cycle time, cost, leakage and risk.</p></article>
+    <article class="step"><div class="n">03</div><h3>Map the boundary</h3><p>Systems, data, identity, rules and failure modes.</p></article>
+    <article class="step"><div class="n">04</div><h3>Engineer the layer</h3><p>AI where judgment helps; deterministic code where it should.</p></article>
+    <article class="step"><div class="n">05</div><h3>Prove the outcome</h3><p>Measure the workflow before expanding scope.</p></article>
+  </div>
+</div>
+</section>
+
+<section class="qual">
+<div class="wrap qualGrid">
+  <div>
+    <div class="eyebrow" style="color:#111">The next step</div>
+    <h2>Find the workflow worth fixing.</h2>
+    <p>Tell us about the bottleneck. We'll use company size, systems complexity, workflow value, urgency and buying readiness to determine whether there is a serious engineering opportunity.</p>
+    <blockquote class="qualQuote">
+      <div class="stars">★★★★★ 5.0 · Verified Upwork review · Top Rated · 100% Job Success</div>
+      <p>“He is extremely knowledgeable, reliable, and very talented. I would highly recommend Srinath to all those looking for a true professional. 10/10”</p>
+      <cite>— T.R.E.E. Group · eXp Realty · outbound AI voice agent build</cite>
+    </blockquote>
+  </div>
+  <div class="qualBox">
+    <b>Enterprise AI Bottleneck Assessment</b>
+    <div>10 questions · ~2 minutes</div>
+    <div>Company + workflow + systems + impact + urgency</div>
+    <div>No generic “AI readiness” score.</div>
+    <button class="btn primary" data-open>Find my bottleneck →</button>
+  </div>
+</div>
+</section>
+
+<footer class="footer wrap"><span>© 2026 Build with Sri</span><span><a href="https://www.upwork.com/freelancers/srinath262003" target="_blank" rel="noopener" style="text-decoration:underline">Upwork: Top Rated · 100% Job Success · verified reviews →</a></span><span>An AI engineering studio in Bengaluru, serving Germany, Australia &amp; the US.</span></footer>
+
+<div class="modal" id="modal">
+<div class="modalBox">
+  <div class="modalTop"><div><div class="eyebrow">Bottleneck assessment</div><h2>Let's see if this is worth engineering.</h2><div class="sub">Answer the questions that determine economic fit. Your details are saved only after you submit your contact information.</div></div><button class="close" id="close">×</button></div>
+  <div class="progress"><i id="progress"></i></div>
+  <div class="q active" data-q="1"><label>01 · Company size</label><div class="opts"><button class="opt">50–199</button><button class="opt">200–999</button><button class="opt">1,000–4,999</button><button class="opt">5,000+</button></div></div>
+  <div class="q" data-q="2"><label>02 · What is expensive right now?</label><div class="opts"><button class="opt">Slow decisions / approvals</button><button class="opt">Exception queues</button><button class="opt">Quote / revenue delay</button><button class="opt">AI production risk</button><button class="opt">Legacy / integration drag</button><button class="opt">AI quality / trust</button></div></div>
+  <div class="q" data-q="3"><label>03 · How many systems are involved?</label><div class="opts"><button class="opt">1–2</button><button class="opt">3–4</button><button class="opt">5–7</button><button class="opt">8+</button></div></div>
+  <div class="q" data-q="4"><label>04 · How much human work remains?</label><div class="opts"><button class="opt">Occasional</button><button class="opt">Daily team work</button><button class="opt">Large queue / bottleneck</button><button class="opt">Executive attention required</button></div></div>
+  <div class="q" data-q="5"><label>05 · What happens if nothing changes?</label><div class="opts"><button class="opt">Minor inconvenience</button><button class="opt">Hours of team capacity lost</button><button class="opt">Revenue / margin impact</button><button class="opt">Operational or production risk</button></div></div>
+  <div class="q" data-q="6"><label>06 · Why now?</label><div class="opts"><button class="opt">Exploring</button><button class="opt">Active internal initiative</button><button class="opt">Budget / project exists</button><button class="opt">Urgent business deadline</button></div></div>
+  <div class="q" data-q="7"><label>07 · Your role</label><div class="opts"><button class="opt">CEO / CFO</button><button class="opt">COO / business leader</button><button class="opt">CTO / CIO</button><button class="opt">Product / AI / IT</button></div></div>
+  <div class="q" data-q="8"><label>08 · What should the first engagement produce?</label><div class="opts"><button class="opt">Opportunity map</button><button class="opt">Production architecture</button><button class="opt">Working pilot</button><button class="opt">Outcome / ROI proof</button></div></div>
+  <div class="q" data-q="9"><label>09 · Describe the workflow in one sentence</label><textarea class="field" rows="5" placeholder="Example: Our sales team checks CRM, ERP and contracts before approving enterprise quotes."></textarea></div>
+  <div class="q" data-q="10"><label>10 · Where should we send the result?</label>
+    <div class="hint">Just your contact details. We’ll send a verification code to your phone via WhatsApp and SMS.</div>
+    <div class="contactGrid">
+      <input class="field" id="leadName" type="text" placeholder="Full name" autocomplete="name">
+      <input class="field" id="leadEmail" type="email" placeholder="Work email" autocomplete="email">
+      <input class="field full" id="leadPhone" type="tel" placeholder="WhatsApp number · +91..." autocomplete="tel">
+    </div>
+    <div class="modalTrust"><b>★★★★★ 5.0</b> · “Everything was delivered in a professional and reliable way.” — verified Upwork client review, elunic</div>
+  </div>
+  <div class="q" data-q="11" id="otpStep">
+    <div class="otpWrap">
+      <div class="otpIcon"><span></span><span></span><span></span></div>
+      <div class="eyebrow">Verification</div>
+      <h3 style="font-family:var(--display);font-size:34px;line-height:1;margin:12px 0 8px">Check your phone</h3>
+      <div class="sub" id="otpSub">We’re putting your answers together before we verify your number.</div>
+      <div class="processingCard" id="processing">
+        <div class="processingDots"><span></span><span></span><span></span></div>
+        <div class="processingTitle" id="processingText">Putting your assessment together…</div>
+        <div class="processingSub" id="processingSub">This usually takes a few seconds.</div>
+        <div class="stageList">
+          <div class="stage active" id="stage1"><span class="dot">1</span><span>Organising your answers</span></div>
+          <div class="stage" id="stage2"><span class="dot">2</span><span>Securing your contact details</span></div>
+          <div class="stage" id="stage3"><span class="dot">3</span><span>Sending verification code (WhatsApp + SMS)</span></div>
+        </div>
+      </div>
+      <div id="otpArea" style="display:none">
+        <input class="field otpCodeField" id="otpCode" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="one-time-code">
+        <div id="otpError" style="display:none;color:#b42318;font-size:12px;margin:4px 0 10px"></div>
+        <button class="btn primary" id="verifyOtp" style="width:100%">Verify & finish →</button>
+        <button class="btn ghost" id="resendOtp" style="width:100%;margin-top:8px">Resend code</button>
+      </div>
+    </div>
+  </div>
+  <div class="modalActions" id="modalActions"><button class="btn ghost" id="back">Back</button><button class="btn primary" id="next">Next →</button></div>
+</div>
+</div>
+
+<script>
+const roleData={
+ceo:{tag:"MARGIN / DECISION SPEED",title:"Turn fragmented operating data into a decision before the meeting happens.",quote:"“Where are people still assembling context that the business already has?”",list:["Slow approvals, hidden margin leakage, expensive analyst time.","CRM + ERP + contracts + inventory + documents.","Assemble evidence, calculate, explain and route — not make uncontrolled decisions."],before:"CRM → spreadsheet → ERP → analyst → meeting",after:"Context → evidence → decision → human approval"},
+ops:{tag:"EXCEPTION / THROUGHPUT",title:"Give your best people fewer exceptions to rescue manually.",quote:"“What work keeps coming back because the happy path cannot handle reality?”",list:["Exception queues consume expert capacity.","Orders + invoices + vendor data + policy + documents.","Classify, reconcile, explain and route ambiguous cases with deterministic checks."],before:"Mismatch → queue → expert → email → correction",after:"Detect → reconcile → explain → escalate only when needed"},
+commercial:{tag:"QUOTE / REVENUE SPEED",title:"Answer the commercial question while the customer is still ready to buy.",quote:"“Why does one customer question require four systems and three people?”",list:["Quote delay and margin uncertainty slow revenue.","CRM + ERP + pricing + inventory + contract history.","Return contextual answers with evidence and approval controls."],before:"Customer asks → seller hunts → internal checks → reply",after:"Question → live context → governed answer → seller"},
+production:{tag:"PRODUCTION / RISK",title:"Move AI from impressive PoC to software your enterprise can actually operate.",quote:"“What happens when the model meets real users, real permissions and real failure?”",list:["Identity, evaluation, observability and failure modes become product requirements.","Models + data + tools + identity + monitoring.","Bounded actions, fallbacks, evaluation and auditability."],before:"Prompt → model → optimistic demo",after:"Identity → retrieval → policy → model → validation → fallback"},
+systems:{tag:"LEGACY / INTEGRATION",title:"Make old systems usable by new AI without replacing what still runs the business.",quote:"“Can AI cross our system boundaries without losing context or control?”",list:["Legacy constraints block new capability.","ERP + CRM + legacy apps + databases + documents.","Controlled interoperability and a governed context layer."],before:"API → field mapping → manual context",after:"Systems → semantic context → governed AI"},
+trust:{tag:"AI QUALITY / TRUST",title:"Engineer the behavior around the model so users know what happens when it fails.",quote:"“Can users trust the system when retrieval is wrong or the provider fails?”",list:["Bad outputs need detection, not hope.","Retrieval + permissions + models + tools + evaluation.","Evaluation, guardrails, fallbacks and observability."],before:"Model output → user hopes it is right",after:"Retrieve → check → answer → validate → fallback"}
+};
+const roles=document.querySelectorAll(".role");
+roles.forEach(r=>r.onclick=()=>{
+ roles.forEach(x=>x.classList.remove("active"));r.classList.add("active");
+ const d=roleData[r.dataset.role];
+ document.getElementById("roleTag").textContent=d.tag;
+ document.getElementById("roleTitle").textContent=d.title;
+ document.getElementById("roleQuote").textContent=d.quote;
+ document.getElementById("before").textContent=d.before;
+ document.getElementById("after").textContent=d.after;
+ document.getElementById("roleList").innerHTML=d.list.map((x,i)=>`<div><b>${["Business pressure","Systems involved","AI's job"][i]}</b><span>${x}</span></div>`).join("");
+});
+const modal=document.getElementById("modal");
+document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>modal.classList.add("open"));
+document.getElementById("close").onclick=()=>modal.classList.remove("open");
+let step=1;
+const qs=[...document.querySelectorAll(".q")];
+const modalActions=document.getElementById("modalActions");
+const processing=document.getElementById("processing");
+const processingText=document.getElementById("processingText");
+const processingSub=document.getElementById("processingSub");
+const otpArea=document.getElementById("otpArea");
+const otpError=document.getElementById("otpError");
+const otpSub=document.getElementById("otpSub");
+const nextBtn=document.getElementById("next");
+const backBtn=document.getElementById("back");
+const progress=document.getElementById("progress");
+const totalQuestions=10;
+
+// After you update apps-script/Code.gs, redeploy it as "Manage deployments -> Edit -> New version"
+// (not a brand-new deployment) so this URL keeps working without changing it here.
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFV5J5rI-z3eBH9Jnp_3gFvpGfdPdpvNG9ELfG1ihSkja1Jnzm4I58AEe9dgcxQer7/exec";
+
+let leadId=null, otpBusy=false;
+
+function renderStep(){
+  qs.forEach(q=>q.classList.toggle("active",+q.dataset.q===step));
+  progress.style.width=Math.min(step/totalQuestions*100,100)+"%";
+  backBtn.style.visibility=(step===1||step===11)?"hidden":"visible";
+  backBtn.textContent="← Back";
+  nextBtn.style.display="";
+  nextBtn.textContent=step===10?"Continue →":"Next →";
+  modalActions.style.display=step===11?"none":"flex";
+}
+
+function showValidation(el){
+  el.style.outline="2px solid var(--accent)";
+  el.animate([{transform:"translateX(0)"},{transform:"translateX(-3px)"},{transform:"translateX(3px)"},{transform:"translateX(0)"}],{duration:260});
+  setTimeout(()=>el.style.outline="",700);
+}
+
+function collectAssessment(){
+  const data={};
+  qs.slice(0,9).forEach((q,i)=>{
+    const selected=q.querySelector(".selected");
+    const input=q.querySelector("input,textarea");
+    data["q"+(i+1)]=selected ? selected.textContent.trim() : (input ? input.value.trim() : "");
+  });
+  data.name=document.getElementById("leadName").value.trim();
+  data.email=document.getElementById("leadEmail").value.trim();
+  data.phone=document.getElementById("leadPhone").value.trim();
+  return data;
+}
+
+async function postToBackend(action,payload){
+  const res=await fetch(GOOGLE_SCRIPT_URL,{
+    method:"POST",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify({action,...payload})
+  });
+  const text=await res.text();
+  let data;
+  try{data=JSON.parse(text)}catch(e){throw new Error("The verification service returned an unexpected response.")}
+  if(!data.ok) throw new Error(data.message||"The request could not be completed.");
+  return data;
+}
+
+function setStage(n){
+  for(let i=1;i<=3;i++){
+    const s=document.getElementById("stage"+i);
+    if(!s)continue;
+    s.classList.toggle("active",i===n);
+    s.classList.toggle("done",i<n);
+    const dot=s.querySelector(".dot");
+    if(i<n)dot.textContent="✓"; else dot.textContent=i;
+  }
+}
+
+async function submitContactAndStartOtp(){
+  if(otpBusy)return;
+
+  const name=document.getElementById("leadName").value.trim();
+  const email=document.getElementById("leadEmail").value.trim();
+  const phone=document.getElementById("leadPhone").value.trim();
+  const current=document.querySelector('.q[data-q="10"]');
+
+  const phoneDigits=phone.replace(/\D/g,"");
+  if(!name||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||phoneDigits.length<8){
+    showValidation(current);
+    otpError.textContent="Please add your name, a valid work email and a phone number with country code.";
+    otpError.style.display="block";
+    return;
+  }
+
+  otpBusy=true; nextBtn.disabled=true; step=11; renderStep();
+  // Reset any state left over from a previous failed attempt so retries render cleanly.
+  document.getElementById("otpCode").style.display="";
+  document.getElementById("otpCode").value="";
+  document.getElementById("verifyOtp").style.display="";
+  document.getElementById("resendOtp").style.display="";
+  processing.style.display="block"; otpArea.style.display="none"; otpError.style.display="none";
+  otpSub.textContent="One quick secure step, then you’re done.";
+  processingText.textContent="Putting your assessment together…";
+  processingSub.textContent="Reviewing your answers and preparing verification.";
+  setStage(1);
+
+  // Small intentional pacing makes the state change feel like a guided handoff,
+  // rather than a blank loading screen. The backend work still happens immediately.
+  await new Promise(r=>setTimeout(r,650));
+
+  try{
+    const lead=collectAssessment();
+
+    // THE ONLY LEAD SAVE: contact details have now been submitted.
+    setStage(2);
+    processingText.textContent="Securing your contact details…";
+    processingSub.textContent="Your assessment is now being saved.";
+    const saved=await postToBackend("saveLead",{lead});
+    leadId=saved.leadId;
+
+    await new Promise(r=>setTimeout(r,550));
+    setStage(3);
+    processingText.textContent="Sending your verification code…";
+    processingSub.textContent="Almost there — check WhatsApp or SMS in a moment.";
+    await postToBackend("sendOtp",{leadId,phone:lead.phone});
+
+    await new Promise(r=>setTimeout(r,450));
+    processing.style.display="none";
+    otpSub.textContent="Enter the 6-digit code we sent to your WhatsApp or SMS.";
+    otpArea.style.display="block";
+    document.getElementById("otpCode").focus();
+  }catch(err){
+    // Give the visitor a way out instead of trapping them on a dead screen:
+    // show what went wrong and let them go back and try again.
+    processing.style.display="none";
+    otpSub.textContent="We hit a small issue while preparing verification.";
+    otpError.textContent=err.message||"Please try again.";
+    otpError.style.display="block";
+    otpArea.style.display="block";
+    document.getElementById("otpCode").style.display="none";
+    document.getElementById("verifyOtp").style.display="none";
+    document.getElementById("resendOtp").style.display="none";
+    modalActions.style.display="flex";
+    nextBtn.style.display="none";
+    backBtn.style.visibility="visible";
+    backBtn.textContent="← Try again";
+  }finally{otpBusy=false;nextBtn.disabled=false;}
+}
+
+async function verifyOtp(){
+  const code=document.getElementById("otpCode").value.trim();
+  otpError.style.display="none";
+  if(!/^\d{6}$/.test(code)){
+    otpError.textContent="Enter the 6-digit code.";
+    otpError.style.display="block"; return;
+  }
+  try{
+    const result=await postToBackend("verifyOtp",{leadId,otp:code});
+    if(!result.verified)throw new Error(result.message||"That code is not valid.");
+    document.querySelector(".otpWrap").innerHTML=`
+      <div class="successState">
+        <div class="check">✓</div>
+        <div class="eyebrow">Verified</div>
+        <h3 style="font-family:var(--display);font-size:34px;line-height:1;margin:12px 0 8px">You're all set.</h3>
+        <div class="sub">Your assessment is in. We’ll review the workflow and follow up with the next step.</div>
+      </div>`;
+  }catch(err){
+    otpError.textContent=err.message||"Verification failed. Please try again.";
+    otpError.style.display="block";
+  }
+}
+
+document.getElementById("back").onclick=()=>{
+  if(step===11){step=10;renderStep();return} // recover from a failed save/OTP send
+  if(step>1){step--;renderStep()}
+};
+
+document.getElementById("next").onclick=()=>{
+  const current=qs[step-1];
+  if(step===10){submitContactAndStartOtp();return}
+  const selected=current.querySelector(".selected");
+  const inputs=current.querySelectorAll("input,textarea");
+  const hasInput=[...inputs].some(x=>x.value.trim());
+  if(!selected&&!hasInput){showValidation(current);return}
+  step++;renderStep();
+};
+
+document.querySelectorAll(".opt").forEach(o=>o.onclick=()=>{
+  o.parentElement.querySelectorAll(".opt").forEach(x=>x.classList.remove("selected"));
+  o.classList.add("selected");
+  const q=o.closest(".q");
+  q.animate([{transform:"scale(.995)"},{transform:"scale(1)"}],{duration:180});
+});
+
+document.getElementById("verifyOtp").onclick=verifyOtp;
+
+document.getElementById("resendOtp").onclick=async()=>{
+  if(!leadId)return;
+  const btn=document.getElementById("resendOtp");
+  try{
+    btn.disabled=true;
+    await postToBackend("sendOtp",{leadId,phone:document.getElementById("leadPhone").value.trim()});
+    otpError.style.display="none";
+    otpSub.textContent="A new verification code was sent via WhatsApp and SMS.";
+  }catch(err){
+    otpError.textContent=err.message||"Could not resend the code.";
+    otpError.style.display="block";
+  }finally{setTimeout(()=>btn.disabled=false,30000);}
+};
+
+renderStep();
+</script>
+</body>
+</html>
