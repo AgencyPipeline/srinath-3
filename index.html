@@ -73,8 +73,10 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 .clientLogos .kufu{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-.03em;color:var(--ink);opacity:.9;transition:opacity .18s}
 .clientLogos .kufu:hover{opacity:1}
 .clientLogos img[alt="eXp Realty"]{height:52px}
-.heroTrust{margin-top:22px;font-size:11px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
-.heroTrust b{color:var(--ink)}
+.heroTrust{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,auto);gap:34px;justify-content:start}
+.heroTrust b{display:block;font-family:var(--display);font-size:24px;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.heroTrust i{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:7px;max-width:120px;line-height:1.45}
+@media(max-width:850px){.heroTrust{grid-template-columns:1fr 1fr;gap:22px}}
 .miniCases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
 .mini{border:1px solid #3b3934;background:#23221f;padding:22px;display:flex;flex-direction:column}
 .mini .tag{font-size:10px;color:var(--accent);letter-spacing:.12em;font-weight:700;text-transform:uppercase}
@@ -147,7 +149,12 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
     <h1>Your AI isn't the bottleneck.<br><em>Your business workflow is.</em></h1>
     <p class="heroLead">We find the expensive decision, exception or handoff your people are still carrying across <strong>ERP, CRM, legacy systems, databases and documents</strong> — then engineer the AI layer around the actual business outcome.</p>
     <div class="heroActions"><button class="btn primary" data-open>Show me where AI should actually go →</button><span class="micro">10 questions · ~2 minutes · no generic AI audit</span></div>
-    <div class="heroTrust"><span><b>4</b> production AI systems shipped</span><span><b>240k+</b> records under AI query</span><span><b>253/253</b> automated emails delivered, zero failures</span><span><b>Top Rated</b> on Upwork · 100% Job Success</span></div>
+    <div class="heroTrust">
+      <div><b>4</b><i>production AI systems shipped</i></div>
+      <div><b>240k+</b><i>records under AI query</i></div>
+      <div><b>253/253</b><i>automated emails delivered, zero failures</i></div>
+      <div><b>Top Rated</b><i>on Upwork · 100% Job Success</i></div>
+    </div>
   </div>
   <div class="heroCard">
     <div class="eyebrow">A workflow, not a chatbot</div>
