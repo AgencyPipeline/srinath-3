@@ -54,7 +54,13 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
 .deliver{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.deliver article{padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:210px;background:var(--paper)}.deliver h3{font-family:var(--display);font-size:19px;line-height:1.05;margin:48px 0 10px}.deliver p{font-size:12px;color:var(--muted);margin:0}.deliver .tag{font-size:10px;color:var(--accent);letter-spacing:.12em;font-weight:700}
 .proofGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.case{background:#23221f;border:1px solid #3b3934;padding:28px;min-height:330px}.case h3{font-family:var(--display);font-size:32px;line-height:1;letter-spacing:-.04em;max-width:600px;margin:45px 0 18px}.case p{color:#aaa79f;font-size:13px;max-width:570px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px}.metric{border:1px solid #3b3934;padding:13px}.metric b{display:block;font-size:22px}.metric span{font-size:10px;color:#99968f}.proofNote{border:1px solid #3b3934;padding:28px}.proofNote h3{font-family:var(--display);font-size:25px;line-height:1.05;margin:45px 0 15px}.proofNote p{font-size:13px;color:#aaa79f}.proofNote ul{padding:0;margin:22px 0 0;list-style:none}.proofNote li{padding:10px 0;border-top:1px solid #3b3934;font-size:12px}
 .process{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #3b3934;border-left:1px solid #3b3934}.step{padding:20px;border-right:1px solid #3b3934;border-bottom:1px solid #3b3934;min-height:200px}.step .n{color:var(--accent);font-size:10px;font-weight:700}.step h3{font-family:var(--display);font-size:18px;line-height:1.05;margin:48px 0 10px}.step p{color:#9d9a93;font-size:12px;margin:0}
-.qual{background:var(--accent);padding:85px 0}.qualGrid{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end}.qual h2{font-family:var(--display);font-size:clamp(42px,6vw,76px);line-height:.91;letter-spacing:-.06em;margin:12px 0}.qual p{max-width:520px;font-size:15px}.qualBox{background:#111;color:#fff;padding:26px}.qualBox b{font-family:var(--display);font-size:20px}.qualBox div{border-top:1px solid #3a3935;padding:12px 0;margin-top:10px;font-size:12px;color:#bbb8b0}.qualBox button{margin-top:12px;width:100%}
+.qual{background:var(--accent);padding:85px 0}
+.qualQuote{margin:28px 0 0;padding:18px 20px;border-left:3px solid #111;max-width:520px}
+.qualQuote .stars{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#111}
+.qualQuote p{font-family:var(--serif);font-style:italic;font-size:15px;margin:10px 0 8px;max-width:none}
+.qualQuote cite{font-style:normal;font-size:11px;font-weight:700;color:#3d1505}
+.modalTrust{margin-top:14px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;line-height:1.5}
+.modalTrust b{color:var(--accent);letter-spacing:.05em}.qualGrid{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:end}.qual h2{font-family:var(--display);font-size:clamp(42px,6vw,76px);line-height:.91;letter-spacing:-.06em;margin:12px 0}.qual p{max-width:520px;font-size:15px}.qualBox{background:#111;color:#fff;padding:26px}.qualBox b{font-family:var(--display);font-size:20px}.qualBox div{border-top:1px solid #3a3935;padding:12px 0;margin-top:10px;font-size:12px;color:#bbb8b0}.qualBox button{margin-top:12px;width:100%}
 .clients{background:var(--paper);border-bottom:1px solid var(--line);padding:34px 0}
 .clientRow{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
 .clientRow .lab{font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--muted);text-transform:uppercase;white-space:nowrap}
@@ -302,6 +308,11 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
     <div class="eyebrow" style="color:#111">The next step</div>
     <h2>Find the workflow worth fixing.</h2>
     <p>Tell us about the bottleneck. We'll use company size, systems complexity, workflow value, urgency and buying readiness to determine whether there is a serious engineering opportunity.</p>
+    <blockquote class="qualQuote">
+      <div class="stars">★★★★★ 5.0 · Verified Upwork review</div>
+      <p>“Tasks were handled with care, and everything was delivered in a professional and reliable way. … A great experience overall.”</p>
+      <cite>— elunic · AI automation engagement · 53 hours</cite>
+    </blockquote>
   </div>
   <div class="qualBox">
     <b>Enterprise AI Bottleneck Assessment</b>
@@ -335,6 +346,7 @@ h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
       <input class="field" id="leadEmail" type="email" placeholder="Work email" autocomplete="email">
       <input class="field full" id="leadPhone" type="tel" placeholder="WhatsApp number · +91..." autocomplete="tel">
     </div>
+    <div class="modalTrust"><b>★★★★★ 5.0</b> · “Everything was delivered in a professional and reliable way.” — verified Upwork client review, elunic</div>
   </div>
   <div class="q" data-q="11" id="otpStep">
     <div class="otpWrap">
