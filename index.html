@@ -511,7 +511,7 @@ src="https://www.facebook.com/tr?id=3042382169265455&ev=PageView&noscript=1"></n
   <div class="q" data-q="8"><label>When do you want this working?</label><div class="opts"><button class="opt">Just exploring</button><button class="opt">Within 3 months</button><button class="opt">Within 1 month</button><button class="opt">Urgent — as soon as possible</button></div></div>
 
   <div class="q" data-q="10"><label>Where should we send your result?</label>
-    <div class="hint">We'll WhatsApp you a 6-digit code to confirm it's you.</div>
+    <div class="hint">We'll text a 6-digit code to this number to confirm it's you.</div>
     <div class="contactGrid">
       <input class="field" id="leadName" type="text" placeholder="Full name" autocomplete="name" autocapitalize="words" enterkeyhint="next">
       <input class="field" id="leadEmail" type="email" inputmode="email" placeholder="Email" autocomplete="email" autocapitalize="off" spellcheck="false" enterkeyhint="next">
@@ -923,7 +923,7 @@ let autosaveTimer=null;
 // lock), and its older, half-typed copy wiped the name/email/phone submitLead had just
 // saved. Now: once the visitor submits, background saves stop, and submitLead waits for
 // any save already in flight before it goes out, so it is always the last write.
-let autosaveInflight=Promise.resolve(), contactSubmitted=false;
+let autosaveInflight=Promise.resolve(), contactSubmitted=false, submitPromise=null;
 function scheduleAutosave(){
   clearTimeout(autosaveTimer);
   autosaveTimer=setTimeout(silentAutosave,400);
@@ -978,49 +978,40 @@ async function submitContactAndStartOtp(){
   }
 
   otpBusy=true; nextBtn.disabled=true; screenIdx=OTP_SCREEN; renderScreen();
+  ensureLeadId();
+  // SPEED: show the code box straight away; the request runs while the visitor waits
+  // for the SMS, instead of a 5-20 s spinner before they can even see where to type.
   document.getElementById("otpCode").style.display="";
   document.getElementById("otpCode").value="";
   document.getElementById("verifyOtp").style.display="";
   document.getElementById("resendOtp").style.display="";
   document.getElementById("skipOtp").style.display="";
-  processing.style.display="block"; otpArea.style.display="none"; otpError.style.display="none";
-  otpSub.textContent="One quick secure step, then you're done.";
-  processingText.textContent="Putting your assessment together…";
-  processingSub.textContent="Reviewing your answers and preparing verification.";
-  setStage(1);
+  processing.style.display="none"; otpError.style.display="none";
+  otpArea.style.display="block";
+  otpSub.textContent="Sending a 6-digit code to "+phone+"…";
+  setTimeout(()=>{ try{ document.getElementById("otpCode").focus(); }catch(e){} },50);
 
-  await new Promise(r=>setTimeout(r,150));
-
-  try{
-    const lead=collectAssessment();
-    lead.fbp=getCookie("_fbp");
-    lead.fbc=getCookie("_fbc");
-
-    setStage(2);
-    processingText.textContent="Securing your details & sending your code…";
-    processingSub.textContent="Check WhatsApp or SMS in a moment.";
-    contactSubmitted=true;
-    try{ await autosaveInflight; }catch(e){}
+  const lead=collectAssessment();
+  lead.fbp=getCookie("_fbp");
+  lead.fbc=getCookie("_fbc");
+  contactSubmitted=true;
+  submitPromise=(async()=>{
+    // No waiting for background saves: the server sends the code first, and a late
+    // background save can no longer blank out fields (Apps Script dropEmpty_).
     const result=await postToBackend("submitLead",{lead,leadId});
     leadId=result.leadId;
     saveLeadId(leadId);
-    // Broader top-of-funnel signal than 'Lead' (reserved for verified+qualified,
-    // per Code.gs's scoreLead_) so Meta has more than a handful of qualified
-    // events to learn delivery from.
     if(META_PIXEL_ID && window.fbq){ pushAdvancedMatching(); bwsTrack('Contact','contact-'+leadId); }
-    setStage(3);
-
-    processing.style.display="none";
-    otpSub.textContent="Enter the 6-digit code we sent to your WhatsApp or SMS — or skip it below.";
-    otpArea.style.display="block";
-    document.getElementById("otpCode").focus();
+    return result;
+  })();
+  try{
+    await submitPromise;
+    otpSub.textContent="Code sent to "+phone+" by SMS. It usually arrives within a minute.";
   }catch(err){
     if(err.leadId){ leadId=err.leadId; saveLeadId(leadId); }
-    processing.style.display="none";
-    otpSub.textContent="We hit a small issue while preparing verification.";
+    otpSub.textContent="We couldn't send the code.";
     otpError.textContent=err.message||"Please try again.";
     otpError.style.display="block";
-    otpArea.style.display="block";
     document.getElementById("otpCode").style.display="none";
     document.getElementById("verifyOtp").style.display="none";
     document.getElementById("resendOtp").style.display="none";
@@ -1034,23 +1025,26 @@ async function submitContactAndStartOtp(){
 
 async function verifyOtp(){
   const code=document.getElementById("otpCode").value.trim();
+  const btn=document.getElementById("verifyOtp");
   otpError.style.display="none";
   if(!/^\d{6}$/.test(code)){
     otpError.textContent="Enter the 6-digit code.";
     otpError.style.display="block"; return;
   }
+  if(btn.disabled) return;
+  btn.disabled=true; const label=btn.textContent; btn.textContent="Verifying…";
   try{
+    if(submitPromise){ try{ await submitPromise; }catch(e){} }
     const result=await postToBackend("verifyOtp",{leadId,otp:code});
     if(!result.verified)throw new Error(result.message||"That code is not valid.");
-    if(META_PIXEL_ID && window.fbq && result.qualified){
-      pushAdvancedMatching();
-      bwsTrack('Lead', leadId);
-    }
+    // The Meta 'Lead' for qualified leads is sent server-side (Conversions API) once the
+    // background scoring finishes, so the visitor never waits for AI scoring here.
     clearLeadId(); // flow complete — nothing left to resume
-    showSuccess("Verified", "Your assessment is in. We'll review the workflow and follow up with the next step.");
+    showSuccess("Verified", "Thanks — you're verified. We'll review your answers and reach out on WhatsApp.");
   }catch(err){
     otpError.textContent=err.message||"Verification failed. Please try again.";
     otpError.style.display="block";
+    btn.disabled=false; btn.textContent=label;
   }
 }
 
@@ -1092,10 +1086,8 @@ document.querySelectorAll(".opt").forEach(o=>o.onclick=()=>{
 // Free-text q9 and the contact fields also autosave as the visitor types, debounced
 // so it only fires ~400ms after they pause rather than on every keystroke.
 
-["leadName","leadEmail","leadPhone"].forEach(id=>{
-  const el=document.getElementById(id);
-  if(el) el.addEventListener("input",scheduleAutosave);
-});
+// Contact fields are NOT autosaved per keystroke any more: every background save queues on
+// the server (3-5 s each) in front of the OTP request. submitLead carries them instead.
 
 document.getElementById("verifyOtp").onclick=verifyOtp;
 [["leadName","leadEmail"],["leadEmail","leadPhone"]].forEach(([a,b])=>{
@@ -1111,6 +1103,7 @@ if(phoneEl) phoneEl.addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preve
 document.getElementById("otpCode").addEventListener("input",e=>{
   const digits=e.target.value.replace(/\D/g,"").slice(0,6);
   if(digits!==e.target.value)e.target.value=digits;
+  if(digits.length===6) verifyOtp(); // no extra tap needed once the full code is in
 });
 document.getElementById("otpCode").addEventListener("keydown",e=>{
   if(e.key==="Enter"){ e.preventDefault(); verifyOtp(); }
@@ -1130,7 +1123,7 @@ document.getElementById("resendOtp").onclick=async()=>{
     btn.disabled=true;
     await postToBackend("sendOtp",{leadId,phone:document.getElementById("leadPhone").value.trim()});
     otpError.style.display="none";
-    otpSub.textContent="A new verification code was sent via WhatsApp and SMS.";
+    otpSub.textContent="A new code is on its way by SMS.";
   }catch(err){
     otpError.textContent=err.message||"Could not resend the code.";
     otpError.style.display="block";
